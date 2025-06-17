@@ -1,0 +1,4 @@
+# Ignore secrets file containing sensitive organization key
+.terraform
+secrets.auto.tfvars
+*.tfstate*
