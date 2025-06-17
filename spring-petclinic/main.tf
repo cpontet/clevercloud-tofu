@@ -25,7 +25,11 @@ resource "clevercloud_java_war" "spring_petclinic_01" {
   max_instance_count  = 2
   smallest_flavor     = "XS"
   biggest_flavor      = "M"
-  dependencies        = [clevercloud_postgresql.pg_petclinic_01.id]
+  dependencies        = [
+    # clevercloud_postgresql.pg_petclinic_01.id
+    "postgresql_142e22cd-7bcc-45f1-a363-d398f0732df8"
+  ]
+
   deployment {
     repository = "https://github.com/cpontet/spring-petclinic.git"
   }
@@ -41,4 +45,8 @@ resource "clevercloud_java_war" "spring_petclinic_01" {
 
 output "pg-host" {
   value = clevercloud_postgresql.pg_petclinic_01.host
+}
+
+output "pg-addon-id" {
+  value = clevercloud_postgresql.pg_petclinic_01.id
 }
